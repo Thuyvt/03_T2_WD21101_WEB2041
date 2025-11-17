@@ -4,7 +4,7 @@ class ProductController
     private $productModel;
 
     public function __construct() {
-        $productModel = new Product();
+        $this->productModel = new Product();
     }
 
     public function index () {
