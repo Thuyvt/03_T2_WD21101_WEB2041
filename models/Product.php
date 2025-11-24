@@ -10,5 +10,18 @@
             $stmt->execute();
             return $stmt->fetchAll();
         }
+
+        public function delete($id) {
+            $sql = "DELETE from products WHERE id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+        }
+
+        public function find($id) {
+            $sql = "SELECT * FROM products WHERE id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetch();
+        }
     }
 ?>

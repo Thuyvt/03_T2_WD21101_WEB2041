@@ -10,7 +10,7 @@ match ($action) {
     // CRUD PRODUCT
     'index-product' => (new ProductController)->index(), // Hiển thị danh sách
     'show-product' => '', // Hiển thị chi tiết
-    'delete-product' => '', // Xóa
+    'delete-product' => (new ProductController)->delete(), // Xóa
     'create-product' => '', // Hiển thị form tạo mới
     'store-product' => '', // Lưu dữ liệu trên form vào CSDL
     'edit-product' => '', // Hiển thị form

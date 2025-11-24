@@ -1,3 +1,4 @@
+<a href="<?= BASE_URL_ADMIN .'&action=create-product'?>" class="btn btn-success">Tạo mới</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,9 +25,10 @@
                 <td><?= $pro["price"]?></td>
                 <td><?= $pro["quantity"]?></td>
                 <td>
-                <button type="button" class="btn btn-primary">Xem</button>
-                <button type="button" class="btn btn-success">Sửa</button>
-                <button type="button" class="btn btn-danger">Xóa</button>
+                <a href="<?= BASE_URL_ADMIN .'&action=show-product&id='.$pro["id"]?>" class="btn btn-primary">Xem</a>
+                <a href="<?= BASE_URL_ADMIN .'&action=edit-product&id='.$pro["id"]?>" class="btn btn-success">Sửa</a>
+                <a href="<?= BASE_URL_ADMIN .'&action=delete-product&id='.$pro["id"] ?>"
+                onclick="return confirm('Có chắc muốn xóa không?')" class="btn btn-danger">Xóa</a>
                 </td>
             </tr>
         <?php endforeach; ?>
