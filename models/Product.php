@@ -23,5 +23,13 @@
             $stmt->execute();
             return $stmt->fetch();
         }
+
+        public function insert($data){
+            $sql = "INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `quantity`, `image`) 
+            VALUES (NULL, '".$data["category_id"]."', '".$data["name"]."', '".$data["description"]."', 
+            '".$data["price"]."', '".$data["quantity"]."', ".$data["image"].");";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+        }
     }
 ?>

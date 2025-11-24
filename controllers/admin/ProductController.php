@@ -2,9 +2,10 @@
 class ProductController 
 {
     private $productModel;
-
+    private $catModel;
     public function __construct() {
         $this->productModel = new Product();
+        $this->catModel = new Category();
     }
 
     public function index () {
@@ -35,6 +36,30 @@ class ProductController
         } catch(Exception $ex) {
             throw new Exception("Thao tác không thành công");
         }
+    }
+
+    //  Hiển thị form tạo mới
+    public function create() {
+        $view = 'product/create';
+        $title = 'Tạo mới sản phẩm';
+        $categories = $this->catModel->getAll();
+        require_once PATH_VIEW_ADMIN_MAIN;
+    }
+
+    // Lưu giữ liệu thêm mới
+    public function store() {
+        
+        // Validate giữ liệu đầu vào
+        // xử lý ảnh
+        $data = $_POST + $_FILES;
+        if ($data["image"]["size"]>=0){
+            $data["image"] = upload_file('products', $data['image']);
+        } else {
+            $data["image"] = null;
+        }
+        // Gọi tới model lưu vào CSDL
+        $this->productModel->insert($data);
+
     }
 }
 ?>
