@@ -48,18 +48,22 @@ class ProductController
 
     // Lưu giữ liệu thêm mới
     public function store() {
-        
-        // Validate giữ liệu đầu vào
-        // xử lý ảnh
-        $data = $_POST + $_FILES;
-        if ($data["image"]["size"]>=0){
-            $data["image"] = upload_file('products', $data['image']);
-        } else {
-            $data["image"] = null;
+        try {
+            // Validate giữ liệu đầu vào
+            // xử lý ảnh
+            $data = $_POST + $_FILES;
+            if ($data["image"]["size"]>=0){
+                $data["image"] = upload_file('products', $data['image']);
+            } else {
+                $data["image"] = null;
+            }
+            // Gọi tới model lưu vào CSDL
+            $this->productModel->insert($data);
+        } catch (Exception $th) {
+            throw new Exception('Thao tác không thành công');
         }
-        // Gọi tới model lưu vào CSDL
-        $this->productModel->insert($data);
-
+        header('Location: ' . BASE_URL_ADMIN . '&action=books-create');
+        exit();
     }
 }
 ?>
